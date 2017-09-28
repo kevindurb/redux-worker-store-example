@@ -783,14 +783,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-const initialState = 0;
+const initialState = [];
 
 const store = Redux.createStore((state = initialState, action) => {
   switch (action.type) {
-    case 'UP':
-      return state + 1;
-    case 'DOWN':
-      return state - 1;
+    case 'SORT_AND_STORE':
+      return action.payload.sort();
     default:
       return state;
   }

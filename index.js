@@ -37,6 +37,15 @@ class WorkerStore {
 
 store = new WorkerStore();
 
-store.subscribe(() => console.log(store.getState()));
+store.subscribe(() => console.log('done', performance.now()));
 
-store.dispatch({ type: 'UP' });
+
+randomArray = (length, max) => [...new Array(length)]
+    .map(() => Math.round(Math.random() * max));
+
+const array = randomArray(100000, 10000);
+
+setInterval(() => {
+  console.log('send', performance.now());
+  store.dispatch({ type: 'SORT_AND_STORE', payload: array });
+}, 1000);
